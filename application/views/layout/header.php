@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets'); ?>/assets/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>">
+        <link rel="icon" type="image/png" href="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/logo_sd37.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/logo_sd37.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>">
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title><?= $title; ?></title>
@@ -34,7 +34,7 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
-            <link rel="icon" type="image/png" href="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>">
+            <link rel="icon" type="image/png" href="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/logo_sd37.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/logo_sd37.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>">
             <meta name="author" content="" />
             <title><?= $title; ?></title>
             <link href="<?= base_url('assets'); ?>/css/styles.css" rel="stylesheet" />

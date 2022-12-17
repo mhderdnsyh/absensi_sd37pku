@@ -11,9 +11,9 @@
     <div class="row detail">
         <div class="col-md-10 col-sm-8 col-6">
             <dl class="row">
-                <dt class="col-sm-5">Nama Pegawai:</dt>
+                <dt class="col-sm-5">Nama GTK:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['namaGtk'] ?></dd>
-                <dt class="col-sm-5">Tanggal Absen:</dt>
+                <dt class="col-sm-5">Tanggal Absensi:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['tglAbsen'] ?></dd>
                 <dt class="col-sm-5">Waktu Datang:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['jamMasuk'] ?></dd>
@@ -21,7 +21,7 @@
                 <dd class="col-sm-7"><?= (empty($dataabsensi['jamPulang'])) ? 'Belum Absensi Pulang' : $dataabsensi['jamPulang']; ?></dd>
                 <dt class="col-sm-5">Status Kehadiran:</dt>
                 <dd class="col-sm-7"><?= ($dataabsensi['statusGtk'] == 1) ? 'Sudah Absensi' : (($dataabsensi['statusGtk'] == 2) ? 'Absensi Terlambat' : 'Belum Absensi'); ?></dd>
-                <dt class="col-sm-5">Keterangan Absen:</dt>
+                <dt class="col-sm-5">Keterangan Absensi:</dt>
                 <dd class="col-sm-7"><?= $dataabsensi['keteranganAbsen'] ?></dd>
                 <dt class="col-sm-5">Titik Lokasi Maps:</dt>
                 <dd class="col-sm-7"><?= (empty($dataabsensi['mapsAbsen'])) ? 'Lokasi Tidak Ditemukan' : (($dataabsensi['mapsAbsen'] == 'No Location') ? 'Lokasi Tidak Ditemukan' : $dataabsensi['mapsAbsen']); ?></dd>

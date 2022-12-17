@@ -3,10 +3,7 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between small">
-                <!-- <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a>
-                    <div class="d-inline">Powered By<a href="https://github.com/sandyh90" class="ml-1">Pickedianz</a></div>
-                </div>
-                <div class="text-muted">
+                <!-- <div class="text-muted">
                     Page rendered in <strong>{elapsed_time}</strong> seconds.
                 </div> -->
             </div>
@@ -182,8 +179,8 @@
                     if (response.success == true) {
                         swal.fire({
                             icon: 'success',
-                            title: 'Absen Sukses',
-                            text: 'Anda Telah Absen!',
+                            title: 'Absensi Sukses',
+                            text: 'Anda Telah Absensi!',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -194,7 +191,7 @@
                     }
                 },
                 error: function() {
-                    swal.fire("Absen Gagal", "Ada Kesalahan Saat Absen!", "error");
+                    swal.fire("Absensi Gagal", "Ada Kesalahan Saat Absensi!", "error");
                 }
             });
 
@@ -235,216 +232,6 @@
         });
     </script>
 
-    <!--Bagian Setting User-->
-    <!-- <script>
-        $("#clear_rememberme").click(function(e) {
-            Swal.fire({
-                title: 'Hapus Semua Remember Me?',
-                text: "Anda yakin ingin menghapus semua sesi remember me anda!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus!'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        type: "POST",
-                        url: "<?= base_url('ajax/clear_rememberme?rmbtype=all'); ?>",
-                        beforeSend: function() {
-                            swal.fire({
-                                imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                title: "Menghapus Semua Remember Me Anda",
-                                text: "Please wait",
-                                showConfirmButton: false,
-                                allowOutsideClick: false
-                            });
-                        },
-                        success: function(data) {
-                            swal.fire({
-                                icon: 'success',
-                                title: 'Menghapus Semua Remember Me Berhasil',
-                                text: 'List remember me anda telah di hapus!',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            $('#remembersesslist').load(location.href + " #remembersesslist");
-                        }
-                    });
-                }
-            })
-            e.preventDefault();
-        });
-
-        $(".sess_rememberme").click(function(e) {
-            e.preventDefault();
-            var sess_id = $(e.currentTarget).attr('data-sess-id');
-            if (sess_id === '') return;
-            Swal.fire({
-                title: 'Hapus Sesi Remember Me Ini?',
-                text: "Anda yakin ingin menghapus sesi di perangkat ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus!'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        type: "POST",
-                        url: '<?= base_url('ajax/clear_rememberme?rmbtype=self'); ?>',
-                        data: {
-                            sess_id: sess_id
-                        },
-                        beforeSend: function() {
-                            swal.fire({
-                                imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                title: "Menghapus Sesi Perangkat Ini",
-                                text: "Please wait",
-                                showConfirmButton: false,
-                                allowOutsideClick: false
-                            });
-                        },
-                        success: function(data) {
-                            swal.fire({
-                                icon: 'success',
-                                title: 'Menghapus Sesi Perangkat Ini Berhasil',
-                                text: 'Anda telah menghapus sesi pada perangat ini!',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            $(e.currentTarget).parent().remove();
-                        }
-                    });
-                }
-            })
-        });
-    </script> -->
-    <!-- <script>
-        $('#chgpassuser').submit(function(e) {
-            e.preventDefault();
-            var form = this;
-            $("#chgpass-btn").html("<span class='fas fa-spinner fa-pulse' aria-hidden='true' title=''></span> Mengganti Password").attr("disabled", true);
-            var formdata = new FormData(form);
-            $.ajax({
-                url: "<?= base_url('ajax/usersetting?type=chgpwd'); ?>",
-                type: 'POST',
-                data: formdata,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                beforeSend: function() {
-                    $('.text-danger').remove();
-                    $("#infopass").hide();
-                    swal.fire({
-                        imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                        title: "Mengubah Password",
-                        text: "Please wait",
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                },
-                success: function(response) {
-                    if (response.success == true) {
-                        $('.text-danger').remove();
-                        swal.fire({
-                            icon: 'success',
-                            title: 'Ubah Password Berhasil',
-                            text: 'Password anda sudah diubah!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        form.reset();
-                        $("#chgpass-btn").html("<span class='fas fa-key mr-1' aria-hidden='true' ></span>Ubah Password").attr("disabled", false);
-                    } else {
-                        swal.close()
-                        $("#infopass").html(response.infopass).show();
-                        swal.fire({
-                            icon: 'error',
-                            title: 'Ubah Password Gagal',
-                            text: 'Password anda gagal diubah!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        $("#chgpass-btn").html("<span class='fas fa-key mr-1' aria-hidden='true' ></span>Ubah Password").attr("disabled", false);
-                        $.each(response.messages, function(key, value) {
-                            var element = $('#' + key);
-                            element.closest('div.form-group')
-                                .find('.text-danger')
-                                .remove();
-                            if (element.parent('.input-group').length) {
-                                element.parent().after(value);
-                            } else {
-                                element.after(value);
-                            }
-                        });
-                    }
-                },
-                error: function() {
-                    swal.fire("Ubah Password", "Ada Kesalahan Saat pengubahan password!", "error");
-                    $("#chgpass-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
-                }
-            });
-
-        });
-
-        $('#settinguser').submit(function(e) {
-            e.preventDefault();
-            var form = this;
-            $("#usrsetting-btn").html("<span class='fas fa-spinner fa-pulse' aria-hidden='true' title=''></span> Mengubah Data").attr("disabled", true);
-            var formdata = new FormData(form);
-            $.ajax({
-                url: "<?= base_url('ajax/usersetting?type=basic'); ?>",
-                type: 'POST',
-                data: formdata,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                beforeSend: function() {
-                    swal.fire({
-                        imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                        title: "Mengubah Data",
-                        text: "Please wait",
-                        showConfirmButton: false,
-                        allowOutsideClick: false
-                    });
-                },
-                success: function(response) {
-                    if (response.success == true) {
-                        $('.text-danger').remove();
-                        swal.fire({
-                            icon: 'success',
-                            title: 'Ubah Profil Berhasil',
-                            text: 'Profil anda sudah diubah!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        location.reload();
-                        $("#usrsetting-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
-                    } else {
-                        swal.close()
-                        $("#usrsetting-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
-                        $.each(response.messages, function(key, value) {
-                            var element = $('#' + key);
-                            element.closest('div.form-group')
-                                .find('.text-danger')
-                                .remove();
-                            if (element.parent('.input-group').length) {
-                                element.parent().after(value);
-                            } else {
-                                element.after(value);
-                            }
-                        });
-                    }
-                },
-                error: function() {
-                    swal.fire("Mengubah Profil Gagal", "Ada Kesalahan Saat pengubahan profil!", "error");
-                    $("#usrsetting-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
-                }
-            });
-
-        });
-    </script> -->
     <script>
         $("#refresh-tabel-absensi").click(function(e) {
             e.preventDefault();
@@ -554,7 +341,7 @@
                             beforeSend: function() {
                                 swal.fire({
                                     imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus Semua Absen",
+                                    title: "Menghapus Semua Absensi",
                                     text: "Please wait",
                                     showConfirmButton: false,
                                     allowOutsideClick: false
@@ -563,7 +350,7 @@
                             success: function(data) {
                                 swal.fire({
                                     icon: 'success',
-                                    title: 'Menghapus Semua Absen Berhasil',
+                                    title: 'Menghapus Semua Absensi Berhasil',
                                     text: 'Absen telah dihapus!',
                                     showConfirmButton: false,
                                     timer: 1500
@@ -602,7 +389,7 @@
                             beforeSend: function() {
                                 swal.fire({
                                     imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus Absen",
+                                    title: "Menghapus Absensi",
                                     text: "Please wait",
                                     showConfirmButton: false,
                                     allowOutsideClick: false
@@ -611,8 +398,8 @@
                             success: function(data) {
                                 swal.fire({
                                     icon: 'success',
-                                    title: 'Menghapus Absen Berhasil',
-                                    text: 'Absen telah dihapus!',
+                                    title: 'Menghapus Absensi Berhasil',
+                                    text: 'Absensi telah dihapus!',
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
@@ -700,7 +487,7 @@
                         $("#info-data").hide();
                         swal.fire({
                             imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                            title: "Menambahkan Pegawai",
+                            title: "Menambahkan GTK",
                             text: "Please wait",
                             showConfirmButton: false,
                             allowOutsideClick: false
@@ -712,8 +499,8 @@
                             $('.text-danger').remove();
                             swal.fire({
                                 icon: 'success',
-                                title: 'Penambahan Pegawai Berhasil',
-                                text: 'Penambahan pegawai sudah berhasil !',
+                                title: 'Penambahan GTK Berhasil',
+                                text: 'Penambahan GTK sudah berhasil !',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -727,7 +514,7 @@
                         }
                     },
                     error: function() {
-                        swal.fire("Penambahan Pegawai Gagal", "Ada Kesalahan Saat penambahan pegawai!", "error");
+                        swal.fire("Penambahan GTK Gagal", "Ada Kesalahan Saat penambahan GTK!", "error");
                         $("#addpgw-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
                     }
                 });
@@ -739,8 +526,8 @@
                 var pgw_id = $(e.currentTarget).attr('data-pegawai-id');
                 if (pgw_id === '') return;
                 Swal.fire({
-                    title: 'Hapus User Ini?',
-                    text: "Anda yakin ingin menghapus user ini!",
+                    title: 'Hapus Pengguna Ini?',
+                    text: "Anda yakin ingin menghapus pengguna ini!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -757,7 +544,7 @@
                             beforeSend: function() {
                                 swal.fire({
                                     imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus User",
+                                    title: "Menghapus Pengguna",
                                     text: "Please wait",
                                     showConfirmButton: false,
                                     allowOutsideClick: false
@@ -767,7 +554,7 @@
                                 if (data.success == false) {
                                     swal.fire({
                                         icon: 'error',
-                                        title: 'Menghapus User Gagal',
+                                        title: 'Menghapus Pengguna Gagal',
                                         text: data.message,
                                         showConfirmButton: false,
                                         timer: 1500
@@ -775,7 +562,7 @@
                                 } else {
                                     swal.fire({
                                         icon: 'success',
-                                        title: 'Menghapus User Berhasil',
+                                        title: 'Menghapus Pengguna Berhasil',
                                         text: data.message,
                                         showConfirmButton: false,
                                         timer: 1500
@@ -784,7 +571,7 @@
                                 }
                             },
                             error: function() {
-                                swal.fire("Penghapusan Pegawai Gagal", "Ada Kesalahan Saat menghapus pegawai!", "error");
+                                swal.fire("Penghapusan GTK Gagal", "Ada Kesalahan Saat menghapus gtk!", "error");
                             }
                         });
                     }
@@ -805,7 +592,7 @@
                     beforeSend: function() {
                         swal.fire({
                             imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                            title: "Aktivasi User",
+                            title: "Aktivasi Pengguna",
                             text: "Please wait",
                             showConfirmButton: false,
                             allowOutsideClick: false
@@ -815,8 +602,8 @@
                         if (data.success) {
                             swal.fire({
                                 icon: 'success',
-                                title: 'Aktivasi User Berhasil',
-                                text: 'Anda telah mengaktifkan user!',
+                                title: 'Aktivasi Pengguna Berhasil',
+                                text: 'Anda telah mengaktifkan pengguna!',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -824,8 +611,8 @@
                         } else {
                             swal.fire({
                                 icon: 'error',
-                                title: 'User Sudah Diaktivasi',
-                                text: 'User ini sudah diaktivasi!',
+                                title: 'Pengguna Sudah Diaktivasi',
+                                text: 'Pengguna ini sudah diaktivasi!',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -833,7 +620,7 @@
                         }
                     },
                     error: function() {
-                        swal.fire("Aktivasi Pegawai Gagal", "Ada Kesalahan Saat aktivasi pegawai!", "error");
+                        swal.fire("Aktivasi GTK Gagal", "Ada Kesalahan Saat aktivasi gtk!", "error");
                     }
                 });
             });
@@ -851,7 +638,7 @@
                     beforeSend: function() {
                         swal.fire({
                             imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                            title: "Mempersiapkan Preview User",
+                            title: "Mempersiapkan Preview Pengguna",
                             text: "Please wait",
                             showConfirmButton: false,
                             allowOutsideClick: false
@@ -864,7 +651,7 @@
 
                     },
                     error: function() {
-                        swal.fire("Preview Pegawai Gagal", "Ada Kesalahan Saat menampilkan data pegawai!", "error");
+                        swal.fire("Preview GTK Gagal", "Ada Kesalahan Saat menampilkan data gtk!", "error");
                     }
                 });
             });
@@ -882,7 +669,7 @@
                     beforeSend: function() {
                         swal.fire({
                             imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                            title: "Mempersiapkan Edit User",
+                            title: "Mempersiapkan Edit Pengguna",
                             text: "Please wait",
                             showConfirmButton: false,
                             allowOutsideClick: false
@@ -908,7 +695,7 @@
                                 beforeSend: function() {
                                     swal.fire({
                                         imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                        title: "Menyimpan Data Pegawai",
+                                        title: "Menyimpan Data GTK",
                                         text: "Please wait",
                                         showConfirmButton: false,
                                         allowOutsideClick: false
@@ -919,8 +706,8 @@
                                         $('.text-danger').remove();
                                         swal.fire({
                                             icon: 'success',
-                                            title: 'Edit Pegawai Berhasil',
-                                            text: 'Edit pegawai sudah berhasil !',
+                                            title: 'Edit GTK Berhasil',
+                                            text: 'Edit GTK sudah berhasil !',
                                             showConfirmButton: false,
                                             timer: 1500
                                         });
@@ -935,7 +722,7 @@
                                     }
                                 },
                                 error: function() {
-                                    swal.fire("Edit Pegawai Gagal", "Ada Kesalahan Saat pengeditan pegawai!", "error");
+                                    swal.fire("Edit GTK Gagal", "Ada Kesalahan Saat pengeditan gtk!", "error");
                                     $("#editpgw-btn").html("<span class='fas fa-pen mr-1' aria-hidden='true' ></span>Edit").attr("disabled", false);
                                 }
                             });
@@ -943,7 +730,7 @@
                         });
                     },
                     error: function() {
-                        swal.fire("Edit Pegawai Gagal", "Ada Kesalahan Saat pengeditan pegawai!", "error");
+                        swal.fire("Edit GTK Gagal", "Ada Kesalahan Saat pengeditan gtk!", "error");
                     }
                 });
             });

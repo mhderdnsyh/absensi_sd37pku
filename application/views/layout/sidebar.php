@@ -5,26 +5,27 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Home</div>
-                        <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                        <!-- <a class="nav-link" href="<?= base_url('dashboard'); ?>"> -->
+                        <a class="nav-link" href="<?= base_url(''); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-tachometer-alt"></span></div>
-                            Dashboard Admin
+                            Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="<?= base_url('absensiku'); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-chart-area"></span></div>
                             Data Kehadiran
                         </a>
-                        <div class="sb-sidenav-menu-heading">Admin</div>
+                        <div class="sb-sidenav-menu-heading">Operator</div>
                         <a class="nav-link" href="<?= base_url('datapegawai'); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-users"></span></div>
-                            Data Pegawai
+                            Data GTK
                         </a><a class="nav-link" href="<?= base_url('absensi'); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-user-check"></span></div>
-                            Absensi Pegawai
+                            Absensi GTK
                         </a>
                         </a><a class="nav-link" href="<?= base_url('settingapp'); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-cog"></span></div>
-                            Settings Aplikasi
+                            Pengaturan Aplikasi
                         </a>
                     </div>
                 </div>
@@ -41,10 +42,10 @@
                             <div class="sb-nav-link-icon"><span class="fas fa-chart-area"></span></div>
                             Data Kehadiran
                         </a>
-                        <div class="sb-sidenav-menu-heading">Moderator</div>
+                        <div class="sb-sidenav-menu-heading">Kepala Sekolah</div>
                         </a><a class="nav-link" href="<?= base_url('absensi'); ?>">
                             <div class="sb-nav-link-icon"><span class="fas fa-user-check"></span></div>
-                            Absensi Pegawai
+                            Absensi GTK
                         </a>
                     </div>
                 </div>

@@ -2,8 +2,8 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 align-self-center">
             <div class="text-center my-2">
-                <img src="<?= $logo_source = (empty($dataapp['logoInstansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>" class="card-img" style="width:50%;">
-                <h3 class="text-white"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></h3>
+                <img src="<?= $logo_source = (empty($dataapp['logoInstansi'])) ? base_url('assets/img/logo_sd37.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/logo_sd37.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>" class="card-img" style="width:50%;">
+                <h3 class="text-white"><?= $appname = (empty($dataapp['namaAppAbsensi'])) ? 'Absensi SD Negeri 37 Kota Pekanbaru' : $dataapp['namaAppAbsensi']; ?></h3>
                 <h4 id="date-and-clock mt-3">
                     <h5 class="text-white" id="clocknow"></h5>
                     <h5 class="text-white" id="datenow"></h5>
@@ -48,9 +48,6 @@
                     <hr>
                     <div class="container">
                         <div class="d-flex align-items-center justify-content-center small">
-                            <!-- <div class="text-muted">Copyright &copy; <?= date("Y"); ?><a href="<?= base_url(); ?>" class="ml-1"><?= $appname = (empty($dataapp['nama_app_absensi'])) ? 'Absensi Online' : $dataapp['nama_app_absensi']; ?></a>
-                                <div class="d-inline">Powered By<a href="https://github.com/sandyh90" class="ml-1">Pickedianz</a></div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

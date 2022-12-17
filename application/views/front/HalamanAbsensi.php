@@ -2,7 +2,7 @@
     <div class="mt-4 jumbotron jumbotron-fluid shadow-lg">
         <div class="container">
             <div class="text-center">
-                <img src="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/clock-image.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/clock-image.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>" class="card-img" style="width:15%;">
+                <img src="<?= (empty($dataapp['logoInstansi'])) ? base_url('assets/img/logo_sd37.png') : (($dataapp['logoInstansi'] == 'default-logo.png') ? base_url('assets/img/logo_sd37.png') : base_url('storage/setting/' . $dataapp['logoInstansi'])); ?>" class="card-img" style="width:15%;">
                 <h1 class="display-5">
                     <?= (empty($dataapp['namaInstansi'])) ? '[Nama Instansi Belum Disetting]' : $dataapp['namaInstansi']; ?>
                 </h1>
@@ -20,9 +20,6 @@
             <div class="card mb-4">
                 <div class="card-header text-center">
                     <span class="fas fa-user mr-1"></span>Identitas Diri
-                    <!-- <div class="float-right">
-                        <button id="qrcode-pegawai" class="btn btn-primary" data-toggle="modal" data-target="#qrcodemodal"><span class="fas fa-qrcode mr-1"></span>QR CODE</button>
-                    </div> -->
                 </div>
                 <div class="card-body">
                     <div class="row detail">

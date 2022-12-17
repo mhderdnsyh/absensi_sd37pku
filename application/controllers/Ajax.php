@@ -400,7 +400,8 @@ class Ajax extends CI_Controller
                     // $r->npwp,  ini diganti jd nip
                     $r->nipGtk,         //sebelumnya nip aja
                     $r->jenisKelamin,
-                    ($r->roleId == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->roleId == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->roleId == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
+                    // ($r->roleId == 1) ? '<span class="badge badge-danger ml-1">Administrator</span>' : (($r->roleId == 2) ? '<span class="badge badge-primary ml-1">Moderator</span>' : (($r->roleId == 3) ? '<span class="badge badge-success ml-1">Pegawai</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
+                    ($r->roleId == 1) ? '<span class="badge badge-danger ml-1">Operator</span>' : (($r->roleId == 2) ? '<span class="badge badge-primary ml-1">Kepala Sekolah</span>' : (($r->roleId == 3) ? '<span class="badge badge-success ml-1">GTK</span>' : '<span class="badge badge-secondary ml-1">Tidak Ada Role</span>')),
                     ($r->bagianShift == 1) ? '<span class="badge badge-success ml-1">Full Time</span>' : (($r->bagianShift == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'),
                     ($r->isActive == 1) ? '<span class="badge badge-success ml-1">Terverifikasi</span>' : '<span class="badge badge-danger ml-1">Belum Terverifikasi</span>',
                     (($query->num_rows() > 1 && $r->roleId != 1) || $check_admin->num_rows() > 1) ?

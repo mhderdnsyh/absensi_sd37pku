@@ -7,21 +7,21 @@
                 <div class="card-body">
                     <?= form_open('export', ['id' => 'cetakabsensi', 'target' => '_blank']); ?>
                     <div class="form-group row">
-                        <label for="nama_pegawai" class="col-sm-4 col-form-label">Nama Pegawai</label>
+                        <label for="nama_pegawai" class="col-sm-4 col-form-label">Nama GTK</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" placeholder="Nama Pegawai">
+                            <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai" placeholder="Nama GTK">
                             <small class="muted">*Kosongkan bagian ini jika ingin menampilkan semua</small>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="absen_tahun" class="col-sm-4 col-form-label">Tahun Absen</label>
+                        <label for="absen_tahun" class="col-sm-4 col-form-label">Tahun Absensi</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="absen_tahun" name="absen_tahun" readonly>
                             <?= form_error('absen_tahun'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="absen_bulan" class="col-sm-4 col-form-label">Bulan Absen</label>
+                        <label for="absen_bulan" class="col-sm-4 col-form-label">Bulan Absensi</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="absen_bulan" name="absen_bulan" readonly>
                             <?= form_error('absen_bulan'); ?>

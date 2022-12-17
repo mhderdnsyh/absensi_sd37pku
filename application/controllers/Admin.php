@@ -30,24 +30,6 @@ class Admin extends CI_Controller
         $this->load->view('layout/footer', $data);
     }
 
-    public function dashboard()                    //tampilDashboard      --ini tp dihilangkan jd ragu
-    {
-        is_admin();
-        $data = [
-            'title' => 'Dashboard Absensi',
-            'user' => $this->get_datasess,
-            'dataapp' => $this->get_datasetupapp
-        ];
-        $data['jmlpegawai'] = $this->M_Admin->hitungjumlahdata('jmlpgw');
-        $data['pegawaitelat'] = $this->M_Admin->hitungjumlahdata('pgwtrl');
-        $data['pegawaimasuk'] = $this->M_Admin->hitungjumlahdata('pgwmsk');
-        $this->load->view('layout/header', $data);
-        $this->load->view('layout/navbar', $data);
-        $this->load->view('layout/sidebar', $data);
-        $this->load->view('admin/HalamanDashboardAdmin', $data);
-        $this->load->view('layout/footer', $data);
-    }
-
     public function datapegawai()               //tampilDataGTK
     {
         is_admin();

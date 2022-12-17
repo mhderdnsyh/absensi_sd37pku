@@ -17,14 +17,14 @@ function is_logged_in()
     }
 }
 
-function rememberme_check()
-{
-    $ci = get_instance();
-    $ci->load->model('M_Auth');
-    if (get_cookie('absensi_rememberme')) {
-        $ci->M_Auth->check_rememberme();
-    }
-}
+// function rememberme_check()
+// {
+//     $ci = get_instance();
+//     $ci->load->model('M_Auth');
+//     if (get_cookie('absensi_rememberme')) {
+//         $ci->M_Auth->check_rememberme();
+//     }
+// }
 
 
 function is_admin()

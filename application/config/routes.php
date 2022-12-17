@@ -60,18 +60,21 @@ $route['datapegawai'] = 'admin/datapegawai';
 $route['absensi'] = 'admin/absensi';
 
 //User URL
-$route['setting'] = 'user/setting';
-$route['profile'] = 'user/profile';
-$route['absensiku'] = 'user/absensiku';
-$route['kalenderabsen'] = 'user/kalenderabsen';
+// $route['setting'] = 'user/setting';
+// $route['profile'] = 'user/profile';
+$route['absensiku'] = 'pengguna/absensiku';
+$route['kalenderabsen'] = 'pengguna/kalenderabsen';
 
 //Auth URL
-$route['login'] = 'auth/login';
-$route['logout'] = 'auth/logout';
+// $route['login'] = 'auth/login';
+$route['login'] = 'login/login';
+// $route['logout'] = 'auth/logout';
+$route['logout'] = 'login/logout';
 
 //Misc URL
 $route['block'] = 'err/block';
-$route['cetak'] = 'docs/print';
-$route['export'] = 'docs/export';
-$route['instantabsen'] = 'absen/instant';
-$route['confirmabsen'] = 'absen/confirmabsen';
+$route['cetak'] = 'export/print';
+$route['export'] = 'export/export';
+// $route['instantabsen'] = 'absen/instant';
+// $route['confirmabsen'] = 'absen/confirmabsen';
+          //['namafunction']                  //namaController/namafunction
