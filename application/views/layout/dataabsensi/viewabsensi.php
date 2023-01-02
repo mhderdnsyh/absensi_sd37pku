@@ -1,17 +1,17 @@
 <div class="row detail">
     <div class="col-md-10 col-sm-8 col-6">
         <dl class="row">
-            <dt class="col-sm-5">Nama Pegawai:</dt>
+            <dt class="col-sm-5">Nama GTK:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['namaGtk'] ?></dd>
-            <dt class="col-sm-5">Tanggal Absen:</dt>
+            <dt class="col-sm-5">Tanggal Absensi:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['tglAbsen'] ?></dd>
             <dt class="col-sm-5">Waktu Datang:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['jamMasuk'] ?></dd>
             <dt class="col-sm-5">Waktu Pulang:</dt>
-            <dd class="col-sm-7"><?= (empty($dataabsensi['jamPulang'])) ? 'Belum Absen Pulang' : $dataabsensi['jamPulang']; ?></dd>
+            <dd class="col-sm-7"><?= (empty($dataabsensi['jamPulang'])) ? 'Belum Absensi Pulang' : $dataabsensi['jamPulang']; ?></dd>
             <dt class="col-sm-5">Status Kehadiran:</dt>
             <dd class="col-sm-7"><?= ($dataabsensi['statusGtk'] == 1) ? '<span class="badge badge-success">Sudah Absensi</span>' : (($dataabsensi['statusGtk'] == 2) ? '<span class="badge badge-danger">Absensi Terlambat</span>' : '<span class="badge badge-primary">Belum Absensi</span>'); ?></dd>
-            <dt class="col-sm-5">Keterangan Absen:</dt>
+            <dt class="col-sm-5">Keterangan Absensi:</dt>
             <dd class="col-sm-7"><?= $dataabsensi['keteranganAbsen'] ?></dd>
         </dl>
     </div>

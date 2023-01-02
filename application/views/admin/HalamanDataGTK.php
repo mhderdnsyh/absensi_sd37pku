@@ -1,10 +1,10 @@
+<div class="HalamanDataGTK">
 <div class="container-fluid">
-    <h1 class="my-4"><span class="fas fa-user-tie mr-2"></span>Data Pegawai</h1>
+    <h1 class="my-4"><span class="fas fa-user-tie mr-2"></span>Data GTK</h1>
     <div class="card mb-4">
         <div class="card-header">
             <div class="float-right">
-                <div class="btn btn-primary" id="refresh-tabel-pegawai"><span class="fas fa-sync-alt mr-1"></span>Refresh Tabel</div>
-                <button class="btn btn-success" data-toggle="modal" data-target="#addpegawaimodal" id="pgwadduser"><span class="fas fa-user-plus mr-1"></span>Tambah Pegawai</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#addpegawaimodal" id="pgwadduser"><span class="fas fa-user-plus mr-1"></span>Tambah</button>
             </div>
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
                             <th>Kode GTK</th>
                             <th>Pas Foto</th>
                             <th>Username</th>
-                            <th>NIP</th>                   <!--Coba ini diganti nip -->
+                            <th>NIP</th>                  
                             <th>Jenis Kelamin</th>
                             <th>Level</th>
                             <th>Shift Bagian</th>
@@ -25,21 +25,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama GTK</th>
-                            <th>Kode GTK</th>
-                            <th>Pas Foto</th>
-                            <th>Username</th>
-                            <th>NIP</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Level</th>
-                            <th>Shift Bagian</th>
-                            <th>Verifikasi</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                     </tbody>
                 </table>
@@ -47,13 +32,14 @@
         </div>
     </div>
 </div>
+</div>
 
-<!-- Modal Add Pegawai -->
+<!-- Modal Add GTK -->
 <div class="modal fade" id="addpegawaimodal" tabindex="-1" role="dialog" aria-labelledby="addpegawaimodal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="addpegawaimodallabel"><span class="fas fa-user-plus mr-1"></span>Tambah Pegawai</h5>
+                <h5 class="modal-title text-center" id="addpegawaimodallabel"><span class="fas fa-user-plus mr-1"></span>Tambah GTK</h5>
             </div>
             <div class="modal-body">
                 <?= form_open_multipart('#', ['id' => 'addpegawai']) ?>
@@ -89,11 +75,12 @@
                 <div class="form-group row">
                     <label for="instansi_pegawai" class="col-sm-4 col-form-label">Instansi</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="instansi_pegawai" name="instansi_pegawai" value="<?= $nameinstansiset = (empty($dataapp['namaInstansi'])) ? '[Nama Instansi Belum Disetting]' : $dataapp['namaInstansi']; ?>" data-toggle="tooltip" data-placement="top" title="Untuk mengubah nama instansi ini silakan buka pada bagian setting aplikasi" readonly>
+                        <!-- <input type="text" class="form-control" id="instansi_pegawai" name="instansi_pegawai" value="<?= $nameinstansiset = (empty($dataapp['namaInstansi'])) ? '[Nama Instansi Belum Disetting]' : $dataapp['namaInstansi']; ?>" data-toggle="tooltip" data-placement="top" title="Untuk mengubah nama instansi ini silakan buka pada bagian setting aplikasi" readonly> -->
+                        <input type="text" class="form-control" id="instansi_pegawai" name="instansi_pegawai" value="<?= $nameinstansiset = $dataapp['namaInstansi']; ?>" data-toggle="tooltip" data-placement="top" title="Untuk mengubah nama instansi ini silakan buka pada bagian setting aplikasi" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="npwp_pegawai" class="col-sm-4 col-form-label">NIP</label>       <!--Sebelumnya NPWP -->
+                    <label for="npwp_pegawai" class="col-sm-4 col-form-label">NIP</label>     
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input type="text" class="form-control" id="npwp_pegawai" name="npwp_pegawai">
@@ -129,7 +116,7 @@
                 <div class="form-group row">
                     <label for="role_pegawai" class="col-sm-4 col-form-label">Role Akun</label>
                     <div class="col-sm-8">
-                        <?= form_dropdown('role_pegawai', ['' => 'Select Role', 1 => 'Administrator', 2 => 'Moderator', 3 => 'Pegawai'], set_value('role_pegawai'), 'class="form-control" id="role_pegawai"'); ?>
+                        <?= form_dropdown('role_pegawai', ['' => 'Select Role', 1 => 'Operator', 2 => 'Kepala Sekolah', 3 => 'GTK'], set_value('role_pegawai'), 'class="form-control" id="role_pegawai"'); ?>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -146,20 +133,20 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="shift_pegawai" class="col-sm-4 col-form-label">Shift Bagian</label>
+                    <label for="shift_pegawai" class="col-sm-4 col-form-label">Shift Kerja</label>
                     <div class="col-sm-8">
                         <div class="form-check form-check-inline">
                             <?= form_radio('shift_pegawai', 1, set_radio('shift_pegawai[]', 1), "id='shift_pegawai' class='form-check-input'"); ?>
-                            <label class="form-check-label" for="shift_pegawai1">Full Time</label>
+                            <label class="form-check-label" for="shift_pegawai1">Pagi</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <?= form_radio('shift_pegawai', 2, set_radio('shift_pegawai[]', 2), "class='form-check-input'"); ?>
-                            <label class="form-check-label" for="shift_pegawai2">Part Time</label>
+                            <label class="form-check-label" for="shift_pegawai2">Siang</label>
                         </div>
-                        <div class="form-check form-check-inline">
+                        <!-- <div class="form-check form-check-inline">
                             <?= form_radio('shift_pegawai', 3, set_radio('shift_pegawai[]', 3), "class='form-check-input'"); ?>
-                            <label class="form-check-label" for="shift_pegawai3">Shift</label>
-                        </div>
+                            <label class="form-check-label" for="shift_pegawai3">Siang</label>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group row">
@@ -175,14 +162,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="form-group row">
-                    <label for="barcode_pegawai" class="col-sm-4 col-form-label">Buat Barcode Pegawai</label>
-                    <div class="col-sm-8">
-                        <div class="custom-control custom-checkbox"><input class="custom-control-input" id="barcode_pegawai" type="checkbox" name="barcode_pegawai" /><label class="custom-control-label" for="barcode_pegawai">Dengan Barcode</label></div>
-                    </div>
-                </div> -->
+       
                 <div class="form-group row">
-                    <div class="col-sm-4">Pas Foto Pegawai</div>
+                    <div class="col-sm-4">Pas Foto GTK</div>
                     <div class="col-sm-8">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="foto_pegawai" name="foto_pegawai">
@@ -201,12 +183,12 @@
     </div>
 </div>
 
-<!-- Modal View Pegawai -->
+<!-- Modal View GTK -->
 <div class="modal fade" id="viewpegawaimodal" tabindex="-1" role="dialog" aria-labelledby="viewpegawaimodal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="viewpegawaimodallabel"><span class="fas fa-user-tie mr-1"></span>Preview Pegawai</h5>
+                <h5 class="modal-title text-center" id="viewpegawaimodallabel"><span class="fas fa-user-tie mr-1"></span>Preview GTK</h5>
             </div>
             <div class="modal-body">
                 <div id="viewdatapegawai"></div>
@@ -218,12 +200,12 @@
     </div>
 </div>
 
-<!-- Modal Edit Pegawai -->
+<!-- Modal Edit GTK -->
 <div class="modal fade" id="editpegawaimodal" tabindex="-1" role="dialog" aria-labelledby="editpegawaimodal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="editpegawaimodallabel"><span class="fas fa-user-edit mr-1"></span>Edit Pegawai</h5>
+                <h5 class="modal-title text-center" id="editpegawaimodallabel"><span class="fas fa-user-edit mr-1"></span>Edit GTK</h5>
             </div>
             <div class="modal-body">
                 <div id="editdatapegawai"></div>

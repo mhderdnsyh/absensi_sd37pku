@@ -1,21 +1,22 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// class Auth extends CI_Controller
-class Login extends CI_Controller
+class HalamanLogin extends CI_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_Auth');
-        $this->load->model('M_Front');
-        $this->get_datasetupapp = $this->M_Front->fetchsetupapp();
+        $this->load->model('Pengguna');
+        $this->load->model('Absensi');
+        $this->get_datasetupapp = $this->Absensi->muatSemuaPengaturan();
     }
 
-    public function login()                                               //ganti jd cekAkun()
+    public function tampilHalamanLogin()                                              
     {
         if ($this->session->userdata('username')) {
-            redirect(base_url());
+            // redirect(base_url());
+            redirect('sistem/tampilHalamanDashboard');
         }
         $validation = [
             [
@@ -42,7 +43,7 @@ class Login extends CI_Controller
             $this->load->view('layout/footer', $data);
         } else {
             //validasi sukses
-            $this->M_Auth->do_login();
+            $this->Pengguna->cekAkun();
         }
     }
 }

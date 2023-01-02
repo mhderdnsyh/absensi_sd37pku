@@ -6544,7 +6544,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-	background-color: #343a40 !important;
+	background-color: #495579 	!important;
 }
 
 a.bg-dark:hover,
@@ -10581,7 +10581,7 @@ body {
 }
 
 .sb-sidenav-dark {
-	background-color: #212529;
+	background-color: #263159;
 	color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
@@ -10606,7 +10606,7 @@ body {
 	color: #fff;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
-	background-color: #343a40;
+	background-color: #495579;
 }
 
 .sb-sidenav-light {
@@ -10635,5 +10635,5 @@ body {
 	color: #007bff;
 }
 .sb-sidenav-light .sb-sidenav-footer {
-	background-color: #e9ecef;
+	background-color: #6d67e4;
 }

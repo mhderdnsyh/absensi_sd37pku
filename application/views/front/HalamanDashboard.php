@@ -1,3 +1,4 @@
+<div class="HalamanDashboard">
 <div class="container-fluid">
     <div class="mt-4 jumbotron jumbotron-fluid shadow-lg">
         <div class="container">
@@ -44,14 +45,14 @@
                                 <dt class="col-sm-5">Jenis Kelamin:</dt>
                                 <dd class="col-sm-7"><?= $user['jenisKelamin'] ?></dd>
                                 <dt class="col-sm-5">Shift Bekerja:</dt>
-                                <dd class="col-sm-7"><?= $shiftpegawai = ($user['bagianShift'] == 1) ? '<span class="badge badge-success">Full Time</span>' : (($user['bagianShift'] == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'); ?></dd>
+                                <dd class="col-sm-7"><?= $shiftpegawai = ($user['bagianShift'] == 1) ? '<span class="badge badge-success">Pagi</span>' : (($user['bagianShift'] == 2) ? '<span class="badge badge-warning">Siang</span>' : '<span class="badge badge-primary">Full Time</span>'); ?></dd>
                             </dl>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Kode Pegawai: <?= $user['kodeGtk'] ?></div>
+                        <div class="text-muted">Kode GTK: <?= $user['kodeGtk'] ?></div>
                         <div class="text-muted">Akun Dibuat: <?= date('d F Y', $user['dateCreated']); ?></div>
                     </div>
                 </div>
@@ -71,10 +72,10 @@
                         <h3 id="clocknow"></h3>
                         <h3 id="datenow"></h3>
                     </div>
-                    <?= form_dropdown('ket_absen', ['Bekerja Di Kantor' => 'Bekerja Di Kantor', 'Bekerja Di Rumah / WFH' => 'Bekerja Di Rumah / WFH', 'Sakit' => 'Sakit', 'Cuti' => 'Cuti'], '', ['class' => 'form-control align-content-center my-2', 'id' => 'ket_absen']); ?>
+                    <?= form_dropdown('ket_absen', ['Hadir' => 'Hadir', 'Izin' => 'Izin', 'Sakit' => 'Sakit', 'Cuti' => 'Cuti', 'Dinas Luar' => 'Dinas Luar', 'Pelatihan dan sebagainya' => 'Pelatihan dan sebagainya'], '', ['class' => 'form-control align-content-center my-2', 'id' => 'ket_absen']); ?>
                     <div class="mt-2">
                         <div id="func-absensi">
-                            <p class="font-weight-bold">Status Kehadiran: <?= $statuspegawai = (empty($dbabsensi['statusGtk'])) ? '<span class="badge badge-primary">Belum Absen</span>' : (($dbabsensi['statusGtk'] == 1) ? '<span class="badge badge-success">Sudah Absen</span>' : '<span class="badge badge-danger">Absen Terlambat</span>'); ?></p>
+                            <p class="font-weight-bold">Status Kehadiran: <?= $statuspegawai = (empty($dbabsensi['statusGtk'])) ? '<span class="badge badge-primary">Belum Absensi</span>' : (($dbabsensi['statusGtk'] == 1) ? '<span class="badge badge-success">Sudah Absensi</span>' : '<span class="badge badge-danger">Absensi Terlambat</span>'); ?></p>
                             <div id="jamabsen">
                                 <p>Waktu Datang: <?= $jammasuk = (empty($dbabsensi['jamMasuk'])) ? '00:00:00' : $dbabsensi['jamMasuk']; ?></p>
                                 <p>Waktu Pulang: <?= $jammasuk = (empty($dbabsensi['jamPulang'])) ? '00:00:00' : $dbabsensi['jamPulang']; ?></p>
@@ -92,5 +93,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 

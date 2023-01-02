@@ -78,7 +78,7 @@
 <div class="form-group row">
     <label for="role_pegawai_edit" class="col-sm-4 col-form-label">Role Akun</label>
     <div class="col-sm-8">
-        <?= form_dropdown('role_pegawai_edit', ['' => 'Select Role', 1 => 'Administrator', 2 => 'Moderator', 3 => 'Pegawai'], set_value('role_pegawai_edit', $datapegawai['roleId']), 'class="form-control" id="role_pegawai_edit"'); ?>
+        <?= form_dropdown('role_pegawai_edit', ['' => 'Select Role', 1 => 'Operator', 2 => 'Kepala Sekolah', 3 => 'GTK'], set_value('role_pegawai_edit', $datapegawai['roleId']), 'class="form-control" id="role_pegawai_edit"'); ?>
     </div>
 </div>
 <div class="form-group row">
@@ -99,16 +99,16 @@
     <div class="col-sm-8">
         <div class="form-check form-check-inline">
             <?= form_radio('shift_pegawai_edit', 1, set_value('shift_pegawai_edit[]', ($datapegawai['bagianShift'] == 1) ? true : false), 'id="shift_pegawai_edit" class="form-check-input"'); ?>
-            <label class="form-check-label" for="shift_pegawai_edit1">Full Time</label>
+            <label class="form-check-label" for="shift_pegawai_edit1">Pagi</label>
         </div>
         <div class="form-check form-check-inline">
             <?= form_radio('shift_pegawai_edit', 2, set_value('shift_pegawai_edit[]', ($datapegawai['bagianShift'] == 2) ? true : false), 'class="form-check-input"'); ?>
-            <label class="form-check-label" for="shift_pegawai_edit2">Part Time</label>
+            <label class="form-check-label" for="shift_pegawai_edit2">Siang</label>
         </div>
-        <div class="form-check form-check-inline">
+        <!-- <div class="form-check form-check-inline">
             <?= form_radio('shift_pegawai_edit', 3, set_value('shift_pegawai_edit[]', ($datapegawai['bagianShift'] == 3) ? true : false), 'class="form-check-input"'); ?>
-            <label class="form-check-label" for="shift_pegawai_edit3">Shift</label>
-        </div>
+            <label class="form-check-label" for="shift_pegawai_edit3">Full Time</label>
+        </div> -->
     </div>
 </div>
 <div class="form-group row">
@@ -126,7 +126,7 @@
 </div>
 
 <div class="form-group row">
-    <div class="col-sm-2">Pas Foto Pegawai</div>
+    <div class="col-sm-2">Pas Foto GTK</div>
     <div class="col-sm-10">
         <div class="row">
             <div class="col-sm-3">

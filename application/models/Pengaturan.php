@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_Settings extends CI_Model
+class Pengaturan extends CI_Model
 {
 
     public function __construct()
@@ -10,45 +10,50 @@ class M_Settings extends CI_Model
         $this->appsetting = $this->db->get_where('pengaturan', ['statusSetting' => 1])->row_array();
     }
 
-    public function init_setting($typeinit)
+    public function muatSemuaPengaturan()
     {
-        if ($typeinit == 1) {
-            $data = [
-                'statusSetting' => 1,
-                'namaInstansi' => '[Ubah Nama Instansi]',
-                'jumbotronLeadSet' => '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]',
-                'namaAppAbsensi' => 'Absensi Online',
-                'logoInstansi' => 'default-logo.png',
-                'timezone' => 'Asia/Jakarta',
-                'absenMulai' => '06:00:00',
-                'absenMulaiTo' => '11:00:00',
-                'absenPulang' => '16:00:00',
-                'mapsUse' => 0
-            ];
-            $old_image = $this->appsetting['logoInstansi'];
-            if ($old_image != 'default-logo.png') {
-                unlink(FCPATH . 'storage/setting/' . $old_image);
-            }
-            $this->db->get_where('pengaturan', ['statusSetting' => 1])->row_array();
-            $this->db->update('pengaturan', $data);
-            $this->db->update('pengguna', ['instansi' => '[Ubah Nama Instansi]']);
-        } elseif ($typeinit == 2) {
-            $data = [
-                'statusSetting' => 1,
-                'namaInstansi' => '[Ubah Nama Instansi]',
-                'jumbotronLeadSet' => '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]',
-                'namaAppAbsensi' => 'Absensi Online',
-                'logoInstansi' => 'default-logo.png',
-                'timezone' => 'Asia/Jakarta',
-                'absenMulai' => '06:00:00',
-                'absenMulaiTo' => '11:00:00',
-                'absenPulang' => '16:00:00',
-                'mapsUse' => 0
-            ];
-            $this->db->insert('pengaturan', $data);
-        }
+        return $this->db->get_where('pengaturan')->row_array();
     }
-    public function update_setting()    //ganti jd atur()  cek ke controller jg jdkan atur()
+
+    // public function awalPengaturan($typeinit)
+    // {
+    //     if ($typeinit == 1) {
+    //         $data = [
+    //             'statusSetting' => 1,
+    //             'namaInstansi' => '[Ubah Nama Instansi]',
+    //             'jumbotronLeadSet' => '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]',
+    //             'namaAppAbsensi' => 'Absensi Online',
+    //             'logoInstansi' => 'default-logo.png',
+    //             'timezone' => 'Asia/Jakarta',
+    //             'absenMulai' => '06:00:00',
+    //             'absenMulaiTo' => '11:00:00',
+    //             'absenPulang' => '16:00:00',
+    //             'mapsUse' => 0
+    //         ];
+    //         $old_image = $this->appsetting['logoInstansi'];
+    //         if ($old_image != 'default-logo.png') {
+    //             unlink(FCPATH . 'storage/setting/' . $old_image);
+    //         }
+    //         $this->db->get_where('pengaturan', ['statusSetting' => 1])->row_array();
+    //         $this->db->update('pengaturan', $data);
+    //         $this->db->update('pengguna', ['instansi' => '[Ubah Nama Instansi]']);
+    //     } elseif ($typeinit == 2) {
+    //         $data = [
+    //             'statusSetting' => 1,
+    //             'namaInstansi' => '[Ubah Nama Instansi]',
+    //             'jumbotronLeadSet' => '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]',
+    //             'namaAppAbsensi' => 'Absensi Online',
+    //             'logoInstansi' => 'default-logo.png',
+    //             'timezone' => 'Asia/Jakarta',
+    //             'absenMulai' => '06:00:00',
+    //             'absenMulaiTo' => '11:00:00',
+    //             'absenPulang' => '16:00:00',
+    //             'mapsUse' => 0
+    //         ];
+    //         $this->db->insert('pengaturan', $data);
+    //     }
+    // }
+    public function atur() 
     {
 
         $sendsave = [

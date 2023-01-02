@@ -49,32 +49,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'HalamanDashboard/tampilHalamanDashboard';
 $route['404_override'] = 'err/notfound';
 $route['translate_uri_dashes'] = FALSE;
 
-//Admin URL
-$route['settingapp'] = 'admin/settingapp';
-$route['dashboard'] = 'admin/dashboard';
-$route['datapegawai'] = 'admin/datapegawai';
-$route['absensi'] = 'admin/absensi';
+//Admin URL //Sistem URL 12-29-2022
+$route['tampilHalamanPengaturanAplikasi'] = 'HalamanPengaturanAplikasi/tampilHalamanPengaturanAplikasi';
+$route['tampilHalamanDataGTK'] = 'HalamanDataGTK/tampilHalamanDataGTK';
+$route['tampilHalamanAbsensiGTK'] = 'HalamanAbsensiGTK/tampilHalamanAbsensiGTK';
 
 //User URL
-// $route['setting'] = 'user/setting';
-// $route['profile'] = 'user/profile';
-$route['absensiku'] = 'pengguna/absensiku';
-$route['kalenderabsen'] = 'pengguna/kalenderabsen';
+$route['tampilHalamanDataKehadiran'] = 'HalamanDataKehadiran/tampilHalamanDataKehadiran';
 
 //Auth URL
-// $route['login'] = 'auth/login';
-$route['login'] = 'login/login';
-// $route['logout'] = 'auth/logout';
-$route['logout'] = 'login/logout';
+$route['login'] = 'HalamanLogin/tampilHalamanLogin';
+// $route['logout'] = 'login/logout';
 
 //Misc URL
 $route['block'] = 'err/block';
-$route['cetak'] = 'export/print';
-$route['export'] = 'export/export';
-// $route['instantabsen'] = 'absen/instant';
-// $route['confirmabsen'] = 'absen/confirmabsen';
-          //['namafunction']                  //namaController/namafunction
+$route['cetak'] = 'sistem/cetak';
+$route['export'] = 'HalamanExport/tampilHalamanExport';
+          //[di sidebar iya nama function di dalam base_url']                  //namaClass/namafunction

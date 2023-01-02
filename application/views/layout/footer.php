@@ -3,9 +3,6 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between small">
-                <!-- <div class="text-muted">
-                    Page rendered in <strong>{elapsed_time}</strong> seconds.
-                </div> -->
             </div>
         </div>
     </footer>
@@ -74,7 +71,7 @@
         $(".logout").click(function(event) {
             $.ajax({
                 type: "POST",
-                url: "<?= base_url('ajax/logoutajax'); ?>",
+                url: "<?= base_url('sistem/logoutAjax'); ?>",
                 beforeSend: function() {
                     swal.fire({
                         imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
@@ -159,10 +156,9 @@
 
             $.ajax({
                 type: "POST",
-                url: '<?= base_url('ajax/absenajax'); ?>',
+                url: '<?= base_url('sistem/absensi'); ?>',
                 data: {
-                    maps_absen: mapsAbsen,                                      //12-14-2022
-                    // mapsAbsen: mapsAbsen,
+                    maps_absen: mapsAbsen,                                     
                     ket_absen: ket_absen
                 }, // serializes the form's elements.
                 dataType: 'json',
@@ -198,7 +194,7 @@
 
         });
     </script>
-    <!--Bagian CRUD Absen User-->
+    <!--Bagian CRUD Absensi User-->
     <script>
         $("#listabsenku").on('click', '.detail-absen', function(e) {
             e.preventDefault();
@@ -206,7 +202,7 @@
             if (absen_id === '') return;
             $.ajax({
                 type: "POST",
-                url: '<?= base_url('ajax/dataabs?type=viewabs'); ?>',
+                url: '<?= base_url('HalamanDataKehadiran/tampilDialogPreviewAbsensi?type=viewabs'); ?>',
                 data: {
                     absen_id: absen_id
                 },
@@ -241,7 +237,7 @@
 
         $('#listabsenku').DataTable({
             "ajax": {
-                url: "<?= base_url('ajax/get_datatbl?type=allself'); ?>",
+                url: "<?= base_url('sistem/muatDataTabel?type=allself'); ?>",
                 type: 'get',
                 async: true,
                 "processing": true,
@@ -278,7 +274,7 @@
         <script>
             $('#list-absensi-masuk').DataTable({
                 "ajax": {
-                    url: "<?= base_url('ajax/get_datatbl?type=getallmsk'); ?>",
+                    url: "<?= base_url('sistem/muatDataTabel?type=getallmsk'); ?>",
                     type: 'get',
                     async: true,
                     "processing": true,
@@ -292,7 +288,7 @@
             });
             $('#list-absensi-terlambat').DataTable({
                 "ajax": {
-                    url: "<?= base_url('ajax/get_datatbl?type=getalltrl'); ?>",
+                    url: "<?= base_url('sistem/muatDataTabel?type=getalltrl'); ?>",
                     type: 'get',
                     async: true,
                     "processing": true,
@@ -308,7 +304,7 @@
         <script>
             $('#list-absensi-all').DataTable({
                 "ajax": {
-                    url: "<?= base_url('ajax/get_datatbl?type=all'); ?>",
+                    url: "<?= base_url('sistem/muatDataTabel?type=all'); ?>",
                     type: 'get',
                     async: true,
                     "processing": true,
@@ -321,97 +317,97 @@
                 }
             });
         </script>
-        <!--CRUD Absen-->
+        <!--CRUD Absen Operator-->
         <script>
-            $("#clear-absensi").on('click', function(e) {
-                e.preventDefault();
-                Swal.fire({
-                    title: 'Hapus Semua Absen?',
-                    text: "Anda yakin ingin menghapus absensi ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= base_url('ajax/dataabs?type=delallabs'); ?>',
-                            beforeSend: function() {
-                                swal.fire({
-                                    imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus Semua Absensi",
-                                    text: "Please wait",
-                                    showConfirmButton: false,
-                                    allowOutsideClick: false
-                                });
-                            },
-                            success: function(data) {
-                                swal.fire({
-                                    icon: 'success',
-                                    title: 'Menghapus Semua Absensi Berhasil',
-                                    text: 'Absen telah dihapus!',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $('#list-absensi-all').DataTable().ajax.reload();
-                            },
-                            error: function() {
-                                swal.fire("Hapus Absensi Gagal", "Ada Kesalahan Saat menghapus semua absensi!", "error");
-                            }
-                        });
-                    }
-                })
-            });
+            // $("#clear-absensi").on('click', function(e) {
+            //     e.preventDefault();
+            //     Swal.fire({
+            //         title: 'Hapus Semua Absen?',
+            //         text: "Anda yakin ingin menghapus absensi ini!",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#3085d6',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: 'Ya, Hapus!'
+            //     }).then((result) => {
+            //         if (result.value) {
+            //             $.ajax({
+            //                 type: "POST",
+            //                 url: '<?= base_url('sistem/tampilDialogPreviewAbsensi?type=delallabs'); ?>',
+            //                 beforeSend: function() {
+            //                     swal.fire({
+            //                         imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
+            //                         title: "Menghapus Semua Absensi",
+            //                         text: "Please wait",
+            //                         showConfirmButton: false,
+            //                         allowOutsideClick: false
+            //                     });
+            //                 },
+            //                 success: function(data) {
+            //                     swal.fire({
+            //                         icon: 'success',
+            //                         title: 'Menghapus Semua Absensi Berhasil',
+            //                         text: 'Absen telah dihapus!',
+            //                         showConfirmButton: false,
+            //                         timer: 1500
+            //                     });
+            //                     $('#list-absensi-all').DataTable().ajax.reload();
+            //                 },
+            //                 error: function() {
+            //                     swal.fire("Hapus Absensi Gagal", "Ada Kesalahan Saat menghapus semua absensi!", "error");
+            //                 }
+            //             });
+            //         }
+            //     })
+            // });
 
 
-            $("#list-absensi-all").on('click', '.delete-absen', function(e) {
-                e.preventDefault();
-                var absen_id = $(e.currentTarget).attr('data-absen-id');
-                if (absen_id === '') return;
-                Swal.fire({
-                    title: 'Hapus Absen Ini?',
-                    text: "Anda yakin ingin menghapus absensi ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Hapus!'
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= base_url('ajax/dataabs?type=delabs'); ?>',
-                            data: {
-                                absen_id: absen_id
-                            },
-                            beforeSend: function() {
-                                swal.fire({
-                                    imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
-                                    title: "Menghapus Absensi",
-                                    text: "Please wait",
-                                    showConfirmButton: false,
-                                    allowOutsideClick: false
-                                });
-                            },
-                            success: function(data) {
-                                swal.fire({
-                                    icon: 'success',
-                                    title: 'Menghapus Absensi Berhasil',
-                                    text: 'Absensi telah dihapus!',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $('#list-absensi-all').DataTable().ajax.reload();
-                            },
-                            error: function() {
-                                swal.fire("Hapus Absensi Gagal", "Ada Kesalahan Saat menghapus absensi!", "error");
-                            }
-                        });
-                    }
-                })
-            });
+            // $("#list-absensi-all").on('click', '.delete-absen', function(e) {
+            //     e.preventDefault();
+            //     var absen_id = $(e.currentTarget).attr('data-absen-id');
+            //     if (absen_id === '') return;
+            //     Swal.fire({
+            //         title: 'Hapus Absen Ini?',
+            //         text: "Anda yakin ingin menghapus absensi ini!",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#3085d6',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: 'Ya, Hapus!'
+            //     }).then((result) => {
+            //         if (result.value) {
+            //             $.ajax({
+            //                 type: "POST",
+            //                 url: '<?= base_url('sistem/tampilDialogPreviewAbsensi?type=delabs'); ?>',
+            //                 data: {
+            //                     absen_id: absen_id
+            //                 },
+            //                 beforeSend: function() {
+            //                     swal.fire({
+            //                         imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
+            //                         title: "Menghapus Absensi",
+            //                         text: "Please wait",
+            //                         showConfirmButton: false,
+            //                         allowOutsideClick: false
+            //                     });
+            //                 },
+            //                 success: function(data) {
+            //                     swal.fire({
+            //                         icon: 'success',
+            //                         title: 'Menghapus Absensi Berhasil',
+            //                         text: 'Absensi telah dihapus!',
+            //                         showConfirmButton: false,
+            //                         timer: 1500
+            //                     });
+            //                     $('#list-absensi-all').DataTable().ajax.reload();
+            //                 },
+            //                 error: function() {
+            //                     swal.fire("Hapus Absensi Gagal", "Ada Kesalahan Saat menghapus absensi!", "error");
+            //                 }
+            //             });
+            //         }
+            //     })
+            // });
 
             $("#list-absensi-all").on('click', '.detail-absen', function(e) {
                 e.preventDefault();
@@ -419,7 +415,7 @@
                 if (absen_id === '') return;
                 $.ajax({
                     type: "POST",
-                    url: '<?= base_url('ajax/dataabs?type=viewabs'); ?>',
+                    url: '<?= base_url('HalamanDataKehadiran/tampilDialogPreviewAbsensi?type=viewabs'); ?>',
                     data: {
                         absen_id: absen_id
                     },
@@ -454,11 +450,11 @@
                 $("#printdataabsensi").html('<object type="application/pdf" data="<?= base_url('cetak?idAbsen='); ?>' + absen_id + '" height="850" style="width: 100%; display: block;">Your browser does not support object tag</object>');
             });
         </script>
-        <!--CRUD Pegawai-->
+        <!--CRUD Pegawai/ GTK-->
         <script>
             $('#datapegawai').DataTable({
                 "ajax": {
-                    url: "<?= base_url('ajax/get_datatbl?type=datapgw'); ?>",
+                    url: "<?= base_url('sistem/muatDataTabel?type=fiturCrudDataGtk'); ?>",
                     type: 'get',
                     async: true,
                     "processing": true,
@@ -477,7 +473,7 @@
                 $("#addpgw-btn").html("<span class='fas fa-spinner fa-pulse' aria-hidden='true' title=''></span> Proses Penambahan").attr("disabled", true);
                 var formdata = new FormData(form);
                 $.ajax({
-                    url: "<?= base_url('ajax/datapgw?type=addpgw'); ?>",
+                    url: "<?= base_url('sistem/fiturCrudDataGtk?type=addpgw'); ?>",
                     type: 'POST',
                     data: formdata,
                     processData: false,
@@ -537,7 +533,7 @@
                     if (result.value) {
                         $.ajax({
                             type: "POST",
-                            url: '<?= base_url('ajax/datapgw?type=delpgw'); ?>',
+                            url: '<?= base_url('sistem/fiturCrudDataGtk?type=delpgw'); ?>',
                             data: {
                                 pgw_id: pgw_id
                             },
@@ -584,7 +580,7 @@
                 if (pgw_id === '') return;
                 $.ajax({
                     type: "POST",
-                    url: '<?= base_url('ajax/datapgw?type=actpgw'); ?>',
+                    url: '<?= base_url('sistem/fiturCrudDataGtk?type=actpgw'); ?>',
                     data: {
                         pgw_id: pgw_id
                     },
@@ -631,7 +627,7 @@
                 if (pgw_id === '') return;
                 $.ajax({
                     type: "POST",
-                    url: '<?= base_url('ajax/datapgw?type=viewpgw'); ?>',
+                    url: '<?= base_url('sistem/fiturCrudDataGtk?type=viewpgw'); ?>',
                     data: {
                         pgw_id: pgw_id
                     },
@@ -662,7 +658,7 @@
                 if (pgw_id === '') return;
                 $.ajax({
                     type: "POST",
-                    url: '<?= base_url('ajax/datapgw?type=edtpgw'); ?>',
+                    url: '<?= base_url('sistem/fiturCrudDataGtk?type=edtpgw'); ?>',
                     data: {
                         pgw_id: pgw_id
                     },
@@ -686,7 +682,7 @@
                             $("#editpgw-btn").html("<span class='fas fa-spinner fa-pulse' aria-hidden='true' title=''></span> Menyimpan").attr("disabled", true);
                             var formdata = new FormData(form);
                             $.ajax({
-                                url: "<?= base_url('ajax/editpgwbc?type=edtpgwalt'); ?>",
+                                url: "<?= base_url('sistem/editpgwbc?type=edtpgwalt'); ?>",
                                 type: 'POST',
                                 data: formdata,
                                 processData: false,
@@ -757,7 +753,7 @@
                     if (result.value) {
                         $.ajax({
                             type: "POST",
-                            url: "<?= base_url('ajax/initsettingapp?type=1'); ?>",
+                            url: "<?= base_url('sistem/awalPengaturanAplikasi?type=1'); ?>",
                             beforeSend: function() {
                                 swal.fire({
                                     imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
@@ -777,10 +773,10 @@
                 event.preventDefault();
             });
 
-            $("#initsettingapp").click(function(event) {
+            $("#awalPengaturanAplikasi").click(function(event) {
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url('ajax/initsettingapp?type=2'); ?>",
+                    url: "<?= base_url('sistem/awalPengaturanAplikasi?type=2'); ?>",
                     beforeSend: function() {
                         swal.fire({
                             imageUrl: "<?= base_url('assets'); ?>/img/ajax-loader.gif",
@@ -803,7 +799,7 @@
                 $("#settingapp-btn").html("<span class='fas fa-spinner fa-pulse' aria-hidden='true' title=''></span> Saving").attr("disabled", true);
                 var formdata = new FormData(this);
                 $.ajax({
-                    url: "<?= base_url('ajax/savingsettingapp'); ?>",
+                    url: "<?= base_url('sistem/validasi'); ?>",
                     type: 'POST',
                     data: formdata,
                     processData: false,
@@ -860,7 +856,7 @@
         <script>
             $('#list-absensi-all').DataTable({
                 "ajax": {
-                    url: "<?= base_url('ajax/get_datatbl?type=all'); ?>",
+                    url: "<?= base_url('sistem/muatDataTabel?type=all'); ?>",
                     type: 'get',
                     async: true,
                     "processing": true,
@@ -873,7 +869,7 @@
                 }
             });
         </script>
-        <!--CRUD Absen-->
+        <!--CRUD Absensi-->
         <script>
             $("#list-absensi-all").on('click', '.detail-absen', function(e) {
                 e.preventDefault();
@@ -881,7 +877,7 @@
                 if (absen_id === '') return;
                 $.ajax({
                     type: "POST",
-                    url: '<?= base_url('ajax/dataabs?type=viewabs'); ?>',
+                    url: '<?= base_url('HalamanDataKehadiran/tampilDialogPreviewAbsensi?type=viewabs'); ?>',
                     data: {
                         absen_id: absen_id
                     },
@@ -920,7 +916,7 @@
     </body>
 
     </html>
-<?php else : ?>
+<?php else : ?> 
     </main>
     </div>
     </div>

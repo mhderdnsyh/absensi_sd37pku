@@ -1,7 +1,7 @@
 <div class="container">
     <div class="jumbotron shadow-lg">
         <div class="text-center">
-            <img src="<?= (empty($dataapp['logoInstansi'])) ? FCPATH . 'assets/img/clock-image.png' : (($dataapp['logoInstansi'] == 'default-logo.png') ? FCPATH . 'assets/img/clock-image.png' : FCPATH . 'storage/setting/' . $dataapp['logoInstansi']); ?>" style="width:20%;">
+            <img src="<?= (empty($dataapp['logoInstansi'])) ? FCPATH . 'assets/img/logo_sd37.png' : (($dataapp['logoInstansi'] == 'default-logo.png') ? FCPATH . 'assets/img/logo_sd37.png' : FCPATH . 'storage/setting/' . $dataapp['logoInstansi']); ?>" style="width:20%;">
             <h3>
                 <?= (empty($dataapp['namaInstansi'])) ? '[Nama Instansi Belum Disetting]' : $dataapp['namaInstansi']; ?>
             </h3>

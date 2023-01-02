@@ -1,47 +1,22 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Export extends CI_Controller
+class HalamanExport extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         is_logged_in();
-        is_moderator();
+        is_kepsek();
         $this->get_datasess = $this->db->get_where('pengguna', ['username' =>
         $this->session->userdata('username')])->row_array();
-        $this->load->model('M_Front');
-        $this->get_datasetupapp = $this->M_Front->fetchsetupapp();
+        $this->load->model('Absensi');
+        $this->get_datasetupapp = $this->Absensi->muatSemuaPengaturan();
         $timezone_all = $this->get_datasetupapp;
         date_default_timezone_set($timezone_all['timezone']);
     }
 
-    //Fitur Print
-    public function print()
-    {
-        if (!empty($this->input->get('idAbsen'))) {
-            $id_absen = $this->input->get('idAbsen');                           //ini ragu klo diubah jd $idAbsen tp error
-            $querydata = $this->db->get_where('absensi', ['idAbsen' => $id_absen])->row_array();
-            $data = [
-                'dataapp' => $this->get_datasetupapp,
-                'dataabsensi' => $querydata
-            ];
-            ob_clean();
-            $mpdf = new \Mpdf\Mpdf();
-            $html = $this->load->view('layout/dataabsensi/printselfabsensi', $data, true);
-            //$pdfFilePath = "storage/pdf_cache/absensipegawai_" . time() . "_download.pdf";
-            $stylesheet = file_get_contents(FCPATH . 'assets/css/mpdf-bootstrap.css');
-            $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
-            $mpdf->WriteHTML(utf8_encode($html), \Mpdf\HTMLParserMode::HTML_BODY);
-            $mpdf->SetTitle('Cetak Absen Pegawai');
-            //$mpdf->Output(FCPATH . $pdfFilePath, "F");
-            $mpdf->Output("absensipegawai_" . time() . "_self" . "_download.pdf", "I");
-        } else {
-            redirect(base_url('absensi'));
-        }
-    }
-
-    public function export()
+    public function tampilHalamanExport()
     {
         $validation = [
             [
@@ -67,7 +42,7 @@ class Export extends CI_Controller
         $this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
         if ($this->form_validation->run() == FALSE) {
             $data = [
-                'title' => 'Export Data',
+                'title' => 'Export',
                 'user' => $this->get_datasess,
                 'dataapp' => $this->get_datasetupapp
             ];
@@ -77,7 +52,8 @@ class Export extends CI_Controller
             $this->load->view('admin/HalamanExport', $data);
             $this->load->view('layout/footer', $data);
         } else {
-            if (empty($this->input->post('nama_pegawai'))) {            //ini ragu mo diubah jd namaGtk sebelumnya nama_pegawai
+            // $this->Absensi->cetak();
+            if (empty($this->input->post('nama_pegawai'))) {    
                 $querydata = $this->db->like('tglAbsen', htmlspecialchars($this->input->post('absen_bulan', true)))->like('tglAbsen', htmlspecialchars($this->input->post('absen_tahun', true)))->get_where('absensi')->result();
             } else {
                 $querydata = $this->db->like('tglAbsen', htmlspecialchars($this->input->post('absen_bulan', true)))->like('tglAbsen', htmlspecialchars($this->input->post('absen_tahun', true)))->get_where('absensi', ['namaGtk' => htmlspecialchars($this->input->post('nama_pegawai', true))])->result();
@@ -94,9 +70,9 @@ class Export extends CI_Controller
                 $stylesheet = file_get_contents(FCPATH . 'assets/css/mpdf-bootstrap.css');
                 $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
                 $mpdf->WriteHTML(utf8_encode($html), \Mpdf\HTMLParserMode::HTML_BODY);
-                $mpdf->SetTitle('Cetak Absen Pegawai');
+                $mpdf->SetTitle('Cetak Absen GTK');
                 //$mpdf->Output(FCPATH . $pdfFilePath, "F");
-                $mpdf->Output("absensipegawai_" . time() . "_bulanan" . "_download.pdf", "I");
+                $mpdf->Output("absensigtk_" . time() . "_bulanan" . "_download.pdf", "I");
             } elseif ($this->input->post('method_export_file') === 'excel') {
 
                 $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
@@ -155,7 +131,7 @@ class Export extends CI_Controller
                 $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(38);
 
                 $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-                $filename = "absensipegawai_" . time() . "_bulanan" . "_download";
+                $filename = "absensigtk_" . time() . "_bulanan" . "_download";
 
                 header('Content-Type: application/vnd.ms-excel');
                 header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
@@ -168,4 +144,4 @@ class Export extends CI_Controller
             }
         }
     }
-}
+}    

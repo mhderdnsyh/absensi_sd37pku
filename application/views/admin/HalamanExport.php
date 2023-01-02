@@ -1,3 +1,4 @@
+<div class="HalamanExport">
 <div class="container-fluid">
     <h1 class="my-4"><span class="fas fa-file mr-2"></span>Export Absensi</h1>
     <div class="row mb-4">
@@ -44,4 +45,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

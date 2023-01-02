@@ -20,7 +20,7 @@
             <dt class="col-sm-5">Jenis Kelamin:</dt>
             <dd class="col-sm-7"><?= $datapegawai['jenisKelamin'] ?></dd>
             <dt class="col-sm-5">Shift Bekerja:</dt>
-            <dd class="col-sm-7"><?= $shiftpegawai = ($datapegawai['bagianShift'] == 1) ? '<span class="badge badge-success">Full Time</span>' : (($datapegawai['bagianShift'] == 2) ? '<span class="badge badge-warning">Part Time</span>' : '<span class="badge badge-primary">Shift Time</span>'); ?></dd>
+            <dd class="col-sm-7"><?= $shiftpegawai = ($datapegawai['bagianShift'] == 1) ? '<span class="badge badge-success">Pagi</span>' : (($datapegawai['bagianShift'] == 2) ? '<span class="badge badge-warning">Siang</span>' : '<span class="badge badge-primary">Full Time</span>'); ?></dd>
         </dl>
     </div>
 </div>

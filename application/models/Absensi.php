@@ -1,9 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_Front extends CI_Model
+class Absensi extends CI_Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -15,32 +14,19 @@ class M_Front extends CI_Model
         $this->appsetting = $this->db->get_where('pengaturan', ['statusSetting' => 1])->row_array();
     }
 
-    public function fetchsetupapp()
+    public function muatSemuaPengaturan()
     {
         return $this->db->get_where('pengaturan')->row_array();
     }
 
-    public function fetchdashboard()
-    {
-        return $this->db->get_where('pengguna')->row_array();
-    }
-
-    public function fetchdbabsen($kode_pegawai)         //ini ragu jd $kodeGtk apa engga
+    public function muatSemuaAbsensi($kode_pegawai)         
     {
         $today = $this->get_today_date;
         return $this->db->get_where('absensi', ['kodeGtk' => $kode_pegawai, 'tglAbsen' => $today])->row_array();
     }
 
-    public function crudabs($typesend)
-    {
-        if ($typesend == 'delabs') {
-            $this->db->delete('absensi', ['idAbsen' => htmlspecialchars($this->input->post('absen_id', true))]);
-        } elseif ($typesend == 'delallabs') {
-            $this->db->truncate('absensi');
-        }
-    }
-
-    public function do_absen()
+    // melakukan absensi 
+    public function absensi()  
     {
         $appsettings = $this->appsetting;
         $today = $this->get_today_date;
@@ -99,4 +85,15 @@ class M_Front extends CI_Model
             $this->db->insert('absensi', $data);
         }
     }
+
+    public function cetak()
+    {
+        if (empty($this->input->post('nama_pegawai'))) {    
+            $querydata = $this->db->like('tglAbsen', htmlspecialchars($this->input->post('absen_bulan', true)))->like('tglAbsen', htmlspecialchars($this->input->post('absen_tahun', true)))->get_where('absensi')->result();
+        } else {
+            $querydata = $this->db->like('tglAbsen', htmlspecialchars($this->input->post('absen_bulan', true)))->like('tglAbsen', htmlspecialchars($this->input->post('absen_tahun', true)))->get_where('absensi', ['namaGtk' => htmlspecialchars($this->input->post('nama_pegawai', true))])->result();
+        }
+    }
+
+
 }
